@@ -38,7 +38,7 @@
       "prefix": "dak",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/app1",
             "index": "projects/app1/src/index.html",
@@ -54,7 +54,8 @@
             "styles": [
               "projects/app1/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "projects/app1/webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -84,7 +85,10 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "extraWebpackConfig": "projects/app1/webpack.config.js"
+          },
           "configurations": {
             "production": {
               "browserTarget": "app1:build:production"
@@ -96,9 +100,10 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "app1:build"
+            "browserTarget": "app1:build",
+            "extraWebpackConfig": "projects/app1/webpack.config.js"
           }
         }
       }
