@@ -87,6 +87,7 @@
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
+            "port": 4201,
             "extraWebpackConfig": "projects/app1/webpack.config.js"
           },
           "configurations": {
@@ -143,7 +144,7 @@
       "prefix": "dak",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/lib",
             "index": "projects/lib/src/index.html",
@@ -159,7 +160,8 @@
             "styles": [
               "projects/lib/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "projects/lib/webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -189,7 +191,11 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "port": 4200,
+            "extraWebpackConfig": "projects/lib/webpack.config.js"
+          },
           "configurations": {
             "production": {
               "browserTarget": "lib:build:production"
@@ -201,9 +207,10 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "lib:build"
+            "browserTarget": "lib:build",
+            "extraWebpackConfig": "projects/app1/webpack.config.js"
           }
         }
       }
